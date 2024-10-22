@@ -1,17 +1,13 @@
 
-=============================
-Artistic Image Generation with ControlNet
-=============================
+# Artistic Image Generation with ControlNet
 
 This project utilizes Stable Diffusion with ControlNet to create artistic images based on ControlNet conditioning and prompts. The generated images can be viewed live through an HTML interface.
 
-Requirements:
---------------
+## Requirements:
 - Python 3.8+
 - GPU (Optional but recommended for faster processing)
 
-Installation:
---------------
+## Installation:
 To install the required dependencies, run the following command:
 
 ```bash
@@ -31,9 +27,8 @@ source env/bin/activate  # On Linux/macOS
 env\Scripts\activate     # On Windows
 ```
 
-Running the Process:
----------------------
-1. **Start the Process**:
+## Running the Process:
+1. **Start the Process:**
    The app script watches a specific directory for new images and processes them. To start the process, run:
 
    ```bash
@@ -45,37 +40,34 @@ Running the Process:
    - Automatically generate new output images in `./dst` when an image is added.
    - Serve the generated images via an HTTP server at `http://localhost:8000`.
 
-2. **Adding Images**:
+2. **Adding Images:**
    - Place any image file (JPEG or PNG) in the `./src` directory.
    - The script will detect the new image, process it using the ControlNet model, and save the result to the `./dst` directory.
 
-3. **Viewing Results**:
+3. **Viewing Results:**
    - Open your browser and go to `http://localhost:8000` to view the original and generated images.
    - The images will be updated in real-time as new steps are processed.
 
-Updating the Prompt Dynamically:
---------------------------------
+## Updating the Prompt Dynamically:
 The prompt can be updated at any time while the script is running. Here's how:
-1. **Enter New Prompt**:
+1. **Enter New Prompt:**
    - In the terminal where the script is running, you will be prompted to enter a new text prompt.
    - Type in your new prompt and press `Enter`.
 
    Example:
-   ```
+   ```bash
    Enter a new prompt: Surreal landscape, vibrant colors, dreamlike, ethereal lighting
    ```
 
 2. The model will use the new prompt for future image generations. The base prompt is always combined with your dynamic prompt to guide the style.
 
-Directory Structure:
---------------------
+## Directory Structure:
 - `./src`: Directory where you add images to be processed.
 - `./dst`: Directory where the processed images are saved.
 - `./html`: Contains the HTML and image files served via the HTTP server.
 - `./html/imgs`: Contains the intermediate and final images viewable on the web interface.
 
-Configuration:
---------------
+## Configuration:
 You can configure various settings by editing the `CONFIG` dictionary in the script:
 
 - `src_dir`: Source directory for input images.
@@ -91,18 +83,12 @@ You can configure various settings by editing the `CONFIG` dictionary in the scr
 - `seed`: Seed for reproducibility.
 - `http_port`: Port number for the HTTP server.
 
-Example:
---------
+## Example:
 1. Place an image `input_image.png` in the `./src` folder.
 2. Open `http://localhost:8000` in a browser to see the original and generated image.
 3. Update the prompt in the terminal to change the style and content of the generated image.
 
-Stopping the Process:
----------------------
+## Stopping the Process:
 To stop the script, press `Ctrl+C` in the terminal.
 
 Enjoy your artistic journey with AI!
-
-=============================
-End of File
-=============================
