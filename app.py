@@ -21,7 +21,7 @@ CONFIG = {
     "prompt_base": "",  # Fixed part of the prompt
     "dynamic_prompt": "Classic oil painting, beautiful, artistic symbolism, brushstrokes, traditional medium, hand-painted, dark, gothic, impressionistic style, high-quality canvas, limited edition, oil paint, palette knife, windsor & newton oil paints, award winning",  # Placeholder for dynamic part of the prompt
     "num_inference_steps": 40,  # Number of inference steps for diffusion
-    "controlnet_strength": 0.8,  # Strength of the controlnet effect (range: 0-1)
+    "controlnet_strength": 0.4,  # Strength of the controlnet effect (range: 0-1)
     "guidance_scale": 5,  # Higher values encourage closer adherence to the prompt
     "image_resolution": (512, 512),  # Resolution of generated images
     "use_safe_mode": True,  # Whether to use the safe mode for the processor
