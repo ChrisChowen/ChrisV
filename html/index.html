@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css" />
+    <script type="text/JavaScript">
+            var url = "imgs/img1.png"; //url to load image from
+            var url2 = "imgs/img2.png"; //url to load second image from
+            var refreshInterval = 1000; //in ms
+            var drawDate = false; //draw date string
+            var img, img2;
+
+            function init() {
+          var canvas = document.getElementById("canvas");
+          var context = canvas.getContext("2d");
+          var canvas2 = document.getElementById("canvas2");
+          var context2 = canvas2.getContext("2d");
+
+          resizeCanvases();
+
+          img = new Image();
+          img.onload = function() {
+              context.drawImage(this, 0, 0, canvas.width, canvas.height);
+              if(drawDate) {
+                  drawText(context, canvas);
+              }
+          };
+
+          img2 = new Image();
+          img2.onload = function() {
+              context2.drawImage(this, 0, 0, canvas2.width, canvas2.height);
+              if(drawDate) {
+                  drawText(context2, canvas2);
+              }
+          };
+
+          refresh();
+      }
+
+      function drawText(context, canvas) {
+          var now = new Date();
+          var text = now.toLocaleDateString() + " " + now.toLocaleTimeString();
+          var maxWidth = 100;
+          var x = canvas.width - 10 - maxWidth;
+          var y = canvas.height - 10;
+          context.strokeStyle = 'black';
+          context.lineWidth = 2;
+          context.strokeText(text, x, y, maxWidth);
+          context.fillStyle = 'white';
+          context.fillText(text, x, y, maxWidth);
+      }
+
+      function resizeCanvases() {
+          var canvas = document.getElementById("canvas");
+          var canvas2 = document.getElementById("canvas2");
+
+          // Calculate square size based on available window width and height
+          var size = Math.min(window.innerWidth / 2.2, window.innerHeight * 0.9);
+
+          canvas.width = size;
+          canvas.height = size;
+          canvas2.width = size;
+          canvas2.height = size;
+      }
+
+      function refresh() {
+          img.src = url + "?t=" + new Date().getTime();
+          img2.src = url2 + "?t=" + new Date().getTime();
+          setTimeout(refresh, refreshInterval);
+      }
+
+      window.onresize = resizeCanvases;
+    </script>
+    <title>Artistic Adventures</title>
+  </head>
+  <body onload="JavaScript:init();">
+    <ul id="Frames">
+      <li class="Frame">
+        <canvas id="canvas" width="512" height="512"></canvas>
+      </li>
+      <li class="Frame">
+        <canvas id="canvas2" width="512" height="512"></canvas>
+      </li>
+    </ul>
+  </body>
+</html>

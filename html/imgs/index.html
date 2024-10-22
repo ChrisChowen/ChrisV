@@ -1,0 +1,76 @@
+<html>
+<head>
+<link rel="stylesheet" href="styles.css">
+<script type="text/JavaScript">
+var url = "img1.png"; //url to load image from
+var url2 = "img2.png"; //url to load second image from
+var refreshInterval = 1000; //in ms
+var drawDate = false; //draw date string
+var img, img2;
+
+function init() {
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    
+    img = new Image();
+    img.onload = function() {
+        canvas.setAttribute("width", img.width)
+        canvas.setAttribute("height", img.height)
+        context.drawImage(this, 0, 0);
+        if(drawDate) {
+            var now = new Date();
+            var text = now.toLocaleDateString() + " " + now.toLocaleTimeString();
+            var maxWidth = 100;
+            var x = img.width-10-maxWidth;
+            var y = img.height-10;
+            context.strokeStyle = 'black';
+            context.lineWidth = 2;
+            context.strokeText(text, x, y, maxWidth);
+            context.fillStyle = 'white';
+            context.fillText(text, x, y, maxWidth);
+        }
+    };
+    img2 = new Image();
+    img2.onload = function() {
+        var canvas2 = document.getElementById("canvas2");
+        var context2 = canvas2.getContext("2d");
+        canvas2.setAttribute("width", img2.width)
+        canvas2.setAttribute("height", img2.height)
+        context2.drawImage(this, 0, 0);
+        if(drawDate) {
+            var now = new Date();
+            var text = now.toLocaleDateString() + " " + now.toLocaleTimeString();
+            var maxWidth = 100;
+            var x = img2.width-10-maxWidth;
+            var y = img2.height-10;
+            context2.strokeStyle = 'black';
+            context2.lineWidth = 2;
+            context2.strokeText(text, x, y, maxWidth);
+            context2.fillStyle = 'white';
+            context2.fillText(text, x, y, maxWidth);
+        }
+    };
+    refresh();
+}
+function refresh()
+{
+    img.src = url + "?t=" + new Date().getTime();
+    img2.src = url2 + "?t=" + new Date().getTime();
+    setTimeout("refresh()",refreshInterval);
+}
+
+</script>
+<title>Artistic Adventures</title>
+</head>
+<body onload="JavaScript:init();">
+    <div id="container">
+    <ul id="Frames">
+        <li class="Frame"><canvas id="canvas"/></li>
+        <li class="Frame"><canvas id="canvas2"/></li>
+        
+    
+        
+    </ul>
+</div>
+    </body>
+</html>
