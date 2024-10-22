@@ -11,7 +11,7 @@ from http.server import SimpleHTTPRequestHandler, HTTPServer
 import threading
 import shutil
 import queue
-
+ 
 # Configuration Variables
 CONFIG = {
     "src_dir": "./src",  # Source directory for images
